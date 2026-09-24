@@ -1,0 +1,59 @@
+[
+  {
+    "stage": "INIT",
+    "timestamp": "2026-09-24T11:10:31.320070+00:00",
+    "detail": "pipeline started"
+  },
+  {
+    "stage": "DOCUMENTS_LOADED",
+    "timestamp": "2026-09-24T11:10:31.326208+00:00",
+    "detail": "5 documents",
+    "artifact": "artifacts/documents.json"
+  },
+  {
+    "stage": "CHUNKS_CREATED",
+    "timestamp": "2026-09-24T11:10:31.328210+00:00",
+    "detail": "15 chunks (CHUNK_SIZE=400)",
+    "artifact": "artifacts/chunks.json"
+  },
+  {
+    "stage": "INDEX_BUILT",
+    "timestamp": "2026-09-24T11:10:31.333517+00:00",
+    "detail": "BM25 index over 15 chunks, 223 terms"
+  },
+  {
+    "stage": "QUESTIONS_LOADED",
+    "timestamp": "2026-09-24T11:10:31.335428+00:00",
+    "detail": "6 questions",
+    "artifact": "questions.json"
+  },
+  {
+    "stage": "RETRIEVAL_COMPLETE",
+    "timestamp": "2026-09-24T11:10:31.339461+00:00",
+    "detail": "9 chunks retrieved (up to 3 per question, 1 with no meaningful match)",
+    "artifact": "artifacts/retrieval_results.json"
+  },
+  {
+    "stage": "ANSWERS_GENERATED",
+    "timestamp": "2026-09-24T11:13:13.592999+00:00",
+    "detail": "6 answers (mode=llm)",
+    "artifact": "artifacts/answers.json"
+  },
+  {
+    "stage": "CITATIONS_VALIDATED",
+    "timestamp": "2026-09-24T11:13:13.595472+00:00",
+    "detail": "0 answers failed validation",
+    "artifact": "artifacts/citation_validation.json"
+  },
+  {
+    "stage": "RESULTS_EXPORTED",
+    "timestamp": "2026-09-24T11:13:13.595978+00:00",
+    "detail": "final answers written",
+    "artifact": "artifacts/final_answers.json"
+  },
+  {
+    "stage": "VALIDATION_COMPLETE",
+    "timestamp": "2026-09-24T11:13:13.620912+00:00",
+    "detail": "14/14 artifact checks passed"
+  }
+]

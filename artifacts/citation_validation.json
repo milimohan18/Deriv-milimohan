@@ -1,0 +1,52 @@
+[
+  {
+    "id": 1,
+    "passed": true,
+    "issues": [],
+    "grounding": {
+      "term_overlap": 1.0,
+      "unsupported_numbers": []
+    }
+  },
+  {
+    "id": 2,
+    "passed": true,
+    "issues": [],
+    "grounding": {
+      "term_overlap": 1.0,
+      "unsupported_numbers": []
+    }
+  },
+  {
+    "id": 3,
+    "passed": true,
+    "issues": [],
+    "grounding": {
+      "term_overlap": 1.0,
+      "unsupported_numbers": []
+    }
+  },
+  {
+    "id": 4,
+    "passed": true,
+    "issues": [],
+    "grounding": {
+      "term_overlap": 1.0,
+      "unsupported_numbers": []
+    }
+  },
+  {
+    "id": 5,
+    "passed": true,
+    "issues": [],
+    "grounding": {
+      "term_overlap": 1.0,
+      "unsupported_numbers": []
+    }
+  },
+  {
+    "id": 6,
+    "passed": true,
+    "issues": []
+  }
+]

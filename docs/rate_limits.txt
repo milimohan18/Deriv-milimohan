@@ -1,0 +1,13 @@
+API Rate Limits
+
+Rate limits are applied per API key. The Starter plan allows 10 requests per second. The Growth plan allows 100 requests per second. Enterprise limits are negotiated per contract.
+
+Every response includes the headers X-RateLimit-Limit, X-RateLimit-Remaining, and X-RateLimit-Reset so clients can track their usage.
+
+Exceeding the rate limit
+
+If you exceed the rate limit, the API returns HTTP status 429 Too Many Requests with a Retry-After header that indicates how many seconds to wait before retrying. Requests rejected with 429 are not billed. Clients should retry with exponential backoff. Keys that repeatedly exceed the limit for more than 15 minutes may be temporarily suspended.
+
+Payload limits
+
+The maximum request body size is 5 MB. List endpoints return at most 100 items per page.

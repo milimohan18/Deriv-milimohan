@@ -1,0 +1,104 @@
+[
+  {
+    "id": 1,
+    "question": "What authentication methods does the API support?",
+    "answer": "The Nimbus API supports two authentication methods: API keys and OAuth 2.0.",
+    "supported": true,
+    "citations": [
+      "authentication__chunk_0"
+    ],
+    "retrieved_chunk_ids": [
+      "authentication__chunk_0",
+      "authentication__chunk_2"
+    ],
+    "generation_mode": "rules_fallback",
+    "validation": {
+      "passed": true,
+      "issues": []
+    }
+  },
+  {
+    "id": 2,
+    "question": "How long are webhook delivery logs retained?",
+    "answer": "Webhook delivery logs, including request payloads and response codes, are retained for 30 days.",
+    "supported": true,
+    "citations": [
+      "webhooks__chunk_2"
+    ],
+    "retrieved_chunk_ids": [
+      "webhooks__chunk_2",
+      "data_retention__chunk_0"
+    ],
+    "generation_mode": "rules_fallback",
+    "validation": {
+      "passed": true,
+      "issues": []
+    }
+  },
+  {
+    "id": 3,
+    "question": "Is there a free plan for startups?",
+    "answer": "Accepted startups receive the Growth plan free for 12 months.",
+    "supported": true,
+    "citations": [
+      "pricing__chunk_2"
+    ],
+    "retrieved_chunk_ids": [
+      "pricing__chunk_2",
+      "pricing__chunk_0"
+    ],
+    "generation_mode": "rules_fallback",
+    "validation": {
+      "passed": true,
+      "issues": []
+    }
+  },
+  {
+    "id": 4,
+    "question": "What happens if I exceed the rate limit?",
+    "answer": "If you exceed the rate limit, the API returns HTTP status 429 Too Many Requests with a Retry-After header that indicates how many seconds to wait before retrying.",
+    "supported": true,
+    "citations": [
+      "rate_limits__chunk_1"
+    ],
+    "retrieved_chunk_ids": [
+      "rate_limits__chunk_1",
+      "rate_limits__chunk_0"
+    ],
+    "generation_mode": "rules_fallback",
+    "validation": {
+      "passed": true,
+      "issues": []
+    }
+  },
+  {
+    "id": 5,
+    "question": "Can I delete customer data immediately on request?",
+    "answer": "You can delete an individual customer record at any time by calling `DELETE /v1/customers/{id}`. The record is removed from the API immediately, but it is kept in encrypted backups for up to 35 days before it is permanently purged.",
+    "supported": true,
+    "citations": [
+      "data_retention__chunk_1"
+    ],
+    "retrieved_chunk_ids": [
+      "data_retention__chunk_1"
+    ],
+    "generation_mode": "rules_fallback",
+    "validation": {
+      "passed": true,
+      "issues": []
+    }
+  },
+  {
+    "id": 6,
+    "question": "Does the platform support GraphQL subscriptions?",
+    "answer": "The knowledge base does not provide enough information to answer this.",
+    "supported": false,
+    "citations": [],
+    "retrieved_chunk_ids": [],
+    "generation_mode": "no_context",
+    "validation": {
+      "passed": true,
+      "issues": []
+    }
+  }
+]
