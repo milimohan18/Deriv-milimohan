@@ -1,6 +1,7 @@
 """Stage CITATIONS_VALIDATED: deterministic checks on every generated answer."""
 from . import config
 from .io_utils import write_json
+from .safety import find_injection
 from .text_utils import extract_numbers, tokenize
 
 
@@ -45,7 +46,20 @@ def validate_answer(answer: dict, retrieval: dict) -> dict:
     elif citations:
         issues.append("unsupported answer must have empty citations")
 
+    # Prompt-injection checks: evidence must not come from suspicious text, and the answer
+    # must not echo injected instructions or leak the prompt.
+    for cid in citations:
+        if cid in retrieved and find_injection(retrieved[cid]):
+            issues.append(f"cited chunk '{cid}' contains suspected prompt-injection text")
+    if find_injection(answer["answer"]):
+        issues.append(f"answer contains suspected injection/prompt-leak text: {find_injection(answer['answer'])}")
+    warnings = []
+    if find_injection(retrieval.get("question", "")):
+        warnings.append(f"question contains suspected prompt-injection text: {find_injection(retrieval['question'])}")
+
     result = {"id": answer["id"], "passed": not issues, "issues": issues}
+    if warnings:
+        result["warnings"] = warnings
     if grounding is not None:
         result["grounding"] = grounding
     return result

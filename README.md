@@ -105,6 +105,20 @@ Each answer records its `generation_mode` (`llm:<model>`, `rules`, `rules_fallba
 
 Failures are recorded as `issues`; they do not stop the pipeline.
 
+**Prompt-injection defences** (`rag/safety.py`). Docs and questions are untrusted input.
+
+- *Detect:* regex patterns for common injection phrasing ("ignore previous instructions",
+  "reveal your system prompt", "you are now…", role markers like `system:` at line start,
+  chat-template tokens, forged `</question>`/`<chunk>` tags, "set supported to…").
+- *Quarantine:* retrieved chunks that match are withheld from answer generation (both modes)
+  and listed in `answers.json` → `quarantined_chunks`. Retrieval output is left unchanged.
+- *Harden the prompt:* the system prompt declares everything in `<context>`/`<question>` as
+  untrusted data to be ignored as instructions; untrusted text is HTML-escaped so it cannot
+  close or forge the `<chunk id="…">` / `<question>` tags. Output is schema-constrained JSON.
+- *Validate:* an answer citing a chunk with injection text, or containing injection/prompt-leak
+  text, fails validation; a question containing injection text is recorded as a `warnings`
+  entry in `citation_validation.json` (the answer itself may still be safe).
+
 **Artifact checks** (`validate.py`, also run as the last stage): required files exist, JSON
 is valid, `llm_calls.jsonl` records are complete, chunk offsets match the source documents,
 exactly one answer/retrieval/final record per question, ≤ 3 retrieved chunks per question,
@@ -135,6 +149,10 @@ cited IDs are valid, supported answers have citations, unsupported answers have 
   chunk it came from (e.g. "webhook logs are kept 90 days" citing the chunk about API request
   logs) passes the deterministic checks; the prompt rule against subject transfer and the
   retrieval filters are the defence there.
+- Injection detection is pattern-based: it stops common phrasing, not every paraphrase or
+  other-language attack. The prompt rules and the schema/citation checks are the backstop.
+- The rule-based extractor joins up to 2 sentences by keyword overlap, which can juxtapose
+  true facts misleadingly (e.g. "Growth plan free for 12 months" + "plans: … Enterprise").
 - Retrieval can still return a lexically similar chunk about a neighbouring subject (Q2
   returns the general retention-periods chunk alongside the webhook-logs chunk).
 - LLM output can vary slightly between runs even at temperature 0; free-tier rate limits may
